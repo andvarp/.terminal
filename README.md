@@ -1,0 +1,3 @@
+# Installation
+
+- `oh-my-zsh`
