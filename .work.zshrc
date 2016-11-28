@@ -51,7 +51,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git dirhistory node npm sudo)
+plugins=(git dirhistory node npm sudo chucknorris)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,13 +107,16 @@ alias editZsh='subl ~/.zshrc'
 alias edit='subl'
 alias new='touch'
 alias la='ls -la'
-alias reload='. ~/.zshrc && echo "Reloaded"'
+alias reload='. ~/.zshrc && cowsay "Reloaded"'
 alias dsremove="find . -name '*.DS_Store' -type f -delete"
 alias svnremove="find . -type d -name .svn -exec rm -rf {} \;"
 alias lockremove="find . -type f -name lock -exec rm -rf {} \;"
 alias iosSim="open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app"
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias webServer='open http://localhost:8000/ && python -m SimpleHTTPServer 8000'
+
+#Install this https://github.com/jingweno/ccat/
+alias cat='ccat'
 
 # Grunt shortcuts
 alias gr='grunt'
@@ -138,7 +141,7 @@ alias gm='git merge'
 
 # Create a dir and `cd` into it.
 function dir {
-    mkdir $@ && cd $_
+    mkdir -pv $@ && cd $_
 }
 
 # Convert Video
@@ -164,4 +167,14 @@ function convertAllVideos {
 	# for i in *.mp4; do echo "$i" ${OUTFOLDER}"${i%.mp4}"; done
 }
 
+# Math on terminal
+function = {
+    echo "$@ = $(($@))"
+}
+function / {
+    echo "$@/2 = $(($@/2))"
 
+}
+
+# Clear terminal
+cls
