@@ -8,7 +8,6 @@ export ZSH=/Users/andvarp/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
-#"robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -109,6 +108,8 @@ alias dsremove="find . -name '*.DS_Store' -type f -delete"
 alias svnremove="find . -type d -name .svn -exec rm -rf {} \;"
 alias lockremove="find . -type f -name lock -exec rm -rf {} \;"
 alias iosSim="open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app"
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'		
+alias webServer='open http://localhost:8000/ && python -m SimpleHTTPServer 8000'
 
 #Install this https://github.com/jingweno/ccat/
 alias cat='ccat'
@@ -116,6 +117,7 @@ alias cat='ccat'
 # Grunt shortcuts
 alias gr='grunt'
 alias grs='grunt serve'
+alias grz='grunt zip'
 alias grb='grunt build'
 
 # Git shortcuts
@@ -138,6 +140,29 @@ function dir {
     mkdir -pv $@ && cd $_
 }
 
+# Convert Video
+# Needs ffmpeg installed
+# Usage convertVideo in.mp4 out
+function convertVideo {
+	ffmpeg -i "$1" -movflags faststart -vframes 1 -f image2 "$2"'-poster.jpg' -acodec copy -vcodec libx264 "$2"'.mp4'
+}
+
+# Convert all videos on folder
+# Needs convertVideo function to run
+# Usage 1, cd VideoFolder && convertAllVideos
+# Usage 2, cd VideoFolder && convertAllVideos outputFolder
+function convertAllVideos {
+	BASEFOLDER='./'
+	OUTFOLDER='output/'
+	if [ "$1" ]
+	then
+		OUTFOLDER="$1"'/'
+	fi
+	mkdir -p ${BASEFOLDER}${OUTFOLDER}
+	for i in *.mp4; do convertVideo "$i" ${BASEFOLDER}${OUTFOLDER}"${i%.mp4}"; done
+	# for i in *.mp4; do echo "$i" ${OUTFOLDER}"${i%.mp4}"; done
+}
+
 # Math on terminal
 function = {
     echo "$@ = $(($@))"
@@ -145,6 +170,32 @@ function = {
 function / {
     echo "$@/2 = $(($@/2))"
 
+}
+
+# Maintenance
+# Usage 1: copyZsh
+# Usage 2: copyZsh work
+function copyZsh {
+	ROOTPATH="/Users/"${DEFAULT_USER}"/"
+	DIRECTORY=${ROOTPATH}".terminal"
+	ZSHRC=".zshrc"
+	FILE=${ROOTPATH}${ZSHRC}
+	DEFAULT="andvarp"
+	if [ "$1" ]; then
+		DEFAULT="$1"
+	fi
+	if [ -d "$DIRECTORY" ]; then
+		if [ -f "$FILE" ]; then
+			echo '> Git Pull'
+			git -C ${DIRECTORY} pull
+			ditto ${FILE} ${DIRECTORY}'/.'${DEFAULT}${ZSHRC}
+			echo '> '${ZSHRC}' => '${DEFAULT}${ZSHRC}
+			echo '> Git Commit'
+			git -C ${DIRECTORY} commit -am '*AutoCommit* Updating => $DEFAULT$ZSHRC'
+			echo '> Git Push'
+			git -C ${DIRECTORY} push
+		fi
+	fi
 }
 
 
