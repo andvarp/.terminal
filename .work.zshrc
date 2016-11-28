@@ -176,5 +176,35 @@ function / {
 
 }
 
+# Maintenance
+# Usage 1: copyZsh
+# Usage 2: copyZsh andvarp
+function copyZsh {
+	ROOTPATH="/Users/"${DEFAULT_USER}"/"
+	DIRECTORY=${ROOTPATH}".terminal"
+	ZSHRC=".zshrc"
+	FILE=${ROOTPATH}${ZSHRC}
+	DEFAULT="work"
+	if [ "$1" ]; then
+		DEFAULT="$1"
+	fi
+	if [ -d "$DIRECTORY" ]; then
+		if [ -f "$FILE" ]; then
+			echo '> Git Pull'
+			git -C ${DIRECTORY} pull
+			ditto ${FILE} ${DIRECTORY}'/.'${DEFAULT}${ZSHRC}
+			echo '> '${ZSHRC}' => '${DEFAULT}${ZSHRC}
+			echo '> Git Commit'
+			git -C ${DIRECTORY} commit -am "*AutoCommit* Updating => $DEFAULT$ZSHRC"
+			echo '> Git Push'
+			git -C ${DIRECTORY} push
+		fi
+	fi
+}
+
 # Clear terminal
 cls
+
+# Pending installs
+# brew install fortune && brew install cowsay && brew install ccat
+echo "brew install fortune cowsay ccat"
