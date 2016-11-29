@@ -62,6 +62,9 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# Dotnet core env variables
+export ASPNETCORE_ENVIRONMENT=Development
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
