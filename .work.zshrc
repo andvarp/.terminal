@@ -193,7 +193,7 @@ function copyZsh {
 			echo '> Git Pull'
 			git -C ${DIRECTORY} pull
 			ditto ${FILE} ${DIRECTORY}'/.'${DEFAULT}${ZSHRC}
-			echo '> '${ZSHRC}' => '${DEFAULT}${ZSHRC}
+			echo '> Copied '${ZSHRC}' => '${DEFAULT}${ZSHRC}
 			echo '> Git Commit'
 			git -C ${DIRECTORY} commit -am "*AutoCommit* Updating => $DEFAULT$ZSHRC"
 			echo '> Git Push'
