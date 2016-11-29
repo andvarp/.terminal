@@ -110,6 +110,7 @@ alias lockremove="find . -type f -name lock -exec rm -rf {} \;"
 alias iosSim="open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app"
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'	
 alias webServer='open http://localhost:8000/ && python -m SimpleHTTPServer 8000'
+alias repo='cd ~/repo/'
 
 #Install this https://github.com/jingweno/ccat/
 alias cat='ccat'
