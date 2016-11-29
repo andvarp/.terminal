@@ -204,7 +204,3 @@ function copyZsh {
 
 # Clear terminal
 cls
-
-# Pending installs
-# brew install fortune && brew install cowsay && brew install ccat
-echo "brew install fortune cowsay ccat"
