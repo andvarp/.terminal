@@ -1,0 +1,78 @@
+
+# -------------------------------------------------------------------
+# FUNCTIONS
+# -------------------------------------------------------------------
+
+# Create a dir and `cd` into it.
+function dir {
+	mkdir -pv $@ && cd $_
+}
+
+# Convert Video
+# Needs ffmpeg installed
+# Usage convertVideo in.mp4 out
+function convertVideo {
+	ffmpeg -i "$1" -movflags faststart -vframes 1 -f image2 "$2"'-poster.jpg' -acodec copy -vcodec libx264 "$2"'.mp4'
+}
+
+# Convert all videos on folder
+# Needs convertVideo function to run
+# Usage 1, cd VideoFolder && convertAllVideos
+# Usage 2, cd VideoFolder && convertAllVideos outputFolder
+function convertAllVideos {
+	BASEFOLDER='./'
+	OUTFOLDER='output/'
+	if [ "$1" ]
+	then
+	OUTFOLDER="$1"'/'
+	fi
+	mkdir -p ${BASEFOLDER}${OUTFOLDER}
+	for i in *.mp4; do convertVideo "$i" ${BASEFOLDER}${OUTFOLDER}"${i%.mp4}"; done
+	# for i in *.mp4; do echo "$i" ${OUTFOLDER}"${i%.mp4}"; done
+}
+
+# Math on terminal
+function = {
+	echo "$@ = $(($@))"
+}
+function / {
+	echo "$@/2 = $(($@/2))"
+
+}
+
+# Maintenance
+function uploadZsh {
+	ROOTPATH="/Users/"${DEFAULT_USER}"/"
+	DIRECTORY=${ROOTPATH}".terminal"
+	ZSHRC=".zshrc"
+	FILE=${ROOTPATH}${ZSHRC}
+	if [ -d "$DIRECTORY" ]; then
+		if [ -f "$FILE" ]; then
+			echo '> Git Pull'
+			git -C ${DIRECTORY} pull
+			echo '> Git Commit'
+			git -C ${DIRECTORY} commit -am "*AutoCommit* Updating => $DEFAULT$ZSHRC"
+			echo '> Git Push'
+			git -C ${DIRECTORY} push
+		fi
+	fi
+}
+
+function downloadZsh {
+	ROOTPATH="/Users/"${DEFAULT_USER}"/"
+	DIRECTORY=${ROOTPATH}".terminal"
+	ZSHRC=".zshrc"
+	FILE=${ROOTPATH}${ZSHRC}
+	if [ -d "$DIRECTORY" ]; then
+		if [ -f "$FILE" ]; then
+			echo '> Git Pull'
+			git -C ${DIRECTORY} pull
+			echo '> Concat files'
+			cat  ${DIRECTORY}'/.'${DEFAULT_ENV}${ZSHRC} ${DIRECTORY}'/._alias' ${DIRECTORY}'/._functions' ${DIRECTORY}'/._last' > ${ROOTPATH}${ZSHRC}
+			reload
+		fi
+	fi
+}
+
+
+

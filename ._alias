@@ -1,0 +1,45 @@
+
+# -------------------------------------------------------------------
+# ALIAS
+# -------------------------------------------------------------------
+
+# TheFuck
+eval $(thefuck --alias)
+
+alias tree='find . -print | sed -e "s;[^/]*/;├── ;g;s;____|; |;g"'
+alias cls=clear
+alias ~='cd ~'
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+alias editZsh='subl ~/.zshrc'
+alias edit='subl'
+alias new='touch'
+alias la='ls -la'
+alias reload='. ~/.zshrc && cowsay "Reloaded"'
+alias dsremove="find . -name '*.DS_Store' -type f -delete"
+alias svnremove="find . -type d -name .svn -exec rm -rf {} \;"
+alias lockremove="find . -type f -name lock -exec rm -rf {} \;"
+alias iosSim="open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app"
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'	
+alias webServer='open http://localhost:8000/ && python -m SimpleHTTPServer 8000'
+alias repo='cd ~/repo/'
+
+#Install this https://github.com/jingweno/ccat/
+alias cat='ccat'
+
+# Grunt shortcuts
+alias gr='grunt'
+alias grs='grunt serve'
+alias grz='grunt zip'
+alias grb='grunt build'
+
+# Git shortcuts
+alias gcl='git clone'
+alias gs='git status'
+alias gps='git push'
+alias gpl='git pull'
+alias gc='git commit -am '
+alias gck='git checkout'
+alias gckd='gck develop'
+alias gcks='gck stage'
+alias gm='git merge'
+
