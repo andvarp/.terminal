@@ -69,7 +69,7 @@ function downloadZsh {
 			git -C ${DIRECTORY} pull
 			echo '> Concat files'
 			cat  ${DIRECTORY}'/.'${DEFAULT_ENV}${ZSHRC} ${DIRECTORY}'/._alias' ${DIRECTORY}'/._functions' ${DIRECTORY}'/._last' > ${ROOTPATH}${ZSHRC}
-			reload
+			. ~/.zshrc && cowsay "Downloaded zshrc file"
 		fi
 	fi
 }
