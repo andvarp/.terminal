@@ -25,6 +25,9 @@ alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias webServer='open http://localhost:8000/ && python -m SimpleHTTPServer 8000'
 alias repo='cd ~/repo/'
 
+# Network
+alias wifi='networksetup -setairportpower airport off; networksetup -setairportpower airport on'
+
 #Install this https://github.com/jingweno/ccat/
 alias cat='ccat'
 
