@@ -10,6 +10,7 @@ alias tree='find . -print | sed -e "s;[^/]*/;├── ;g;s;____|; |;g"'
 alias cls=clear
 alias ~='cd ~'
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+alias subl.="subl ."
 alias editZsh='subl ~/.terminal'
 alias editAlias='subl ~/.terminal/._alias'
 alias editFunction='subl ~/.terminal/._functions'

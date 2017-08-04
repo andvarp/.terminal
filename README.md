@@ -1,4 +1,4 @@
 # Installation
 
-- `oh-my-zsh`
+- `oh-my-zsh`  
 - brew install `fortune cowsay ccat`
