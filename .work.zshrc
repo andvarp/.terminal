@@ -25,6 +25,11 @@ export NVM_DIR="$HOME/.nvm"
 # Dotnet core env variables
 export ASPNETCORE_ENVIRONMENT=Development
 
+# Android Config
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 # User configuration
 
 DEFAULT_USER="josvarga"
