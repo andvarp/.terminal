@@ -7,7 +7,7 @@ export ZSH=/Users/josvarga/.oh-my-zsh
 # Theme
 ZSH_THEME="agnoster"
 
-# Plugings
+# Plugins
 plugins=(git dirhistory node npm sudo chucknorris)
 
 # Run oh-my-zsh.sh
@@ -29,4 +29,3 @@ export ASPNETCORE_ENVIRONMENT=Development
 
 DEFAULT_USER="josvarga"
 DEFAULT_ENV="work"
-
