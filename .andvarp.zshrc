@@ -21,6 +21,10 @@ source $ZSH/oh-my-zsh.sh
 #Flutter
 export PATH="$PATH:$HOME/development/flutter/bin"
 
+# Android Config
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # User configuration
 
