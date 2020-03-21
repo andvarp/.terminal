@@ -18,6 +18,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Specific env variables
 
+#Flutter
+export PATH="$PATH:$HOME/development/flutter/bin"
+
+
 # User configuration
 
 DEFAULT_USER="andvarp"
