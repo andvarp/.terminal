@@ -30,3 +30,8 @@ export PATH=$PATH:$HOME/development/flutter/bin
 
 DEFAULT_USER="andvarp"
 DEFAULT_ENV="andvarp"
+
+
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
